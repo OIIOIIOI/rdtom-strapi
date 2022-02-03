@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "answers": {
+      "displayName": "Answer",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.answer",
+      "required": true,
+      "min": 2
+    }
+  }
+}

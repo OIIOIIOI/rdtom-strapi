@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_test_cat_answers",
+  "info": {
+    "displayName": "answer",
+    "icon": "check",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "isCorrect": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
