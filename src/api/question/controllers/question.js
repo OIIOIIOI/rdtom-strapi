@@ -16,5 +16,15 @@ module.exports = createCoreController('api::question.question', ({ strapi }) => 
 		ctx.query.populate = populateList.join(',')
 		
 		return await super.find(ctx)
+	},
+	async findOne(ctx) {
+		const populateList = [
+			'answers',
+		]
+		// Push any additional query params to the array
+		populateList.push(ctx.query.populate)
+		ctx.query.populate = populateList.join(',')
+		
+		return await super.find(ctx)
 	}
 }));
