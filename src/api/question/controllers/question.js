@@ -25,6 +25,6 @@ module.exports = createCoreController('api::question.question', ({ strapi }) => 
 		populateList.push(ctx.query.populate)
 		ctx.query.populate = populateList.join(',')
 		
-		return await super.find(ctx)
+		return await super.findOne(ctx)
 	}
 }));
