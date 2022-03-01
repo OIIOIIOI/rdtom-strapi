@@ -28,16 +28,28 @@ module.exports = createCoreController('api::question.question', ({ strapi }) => 
 		return await super.findOne(ctx)
 	},
 	async getRandom(ctx) {
-		const populateList = [
-			'answers',
-		]
-		// Push any additional query params to the array
-		populateList.push(ctx.query.populate)
-		ctx.query.populate = populateList.join(',')
-		
-		const { data, meta } = await super.index(ctx);
-		console.log(data)
-		
-		return await super.index(ctx)
+		const locale = ctx.query.locale || 'it'
+		// Get count for locale
+		const count = await strapi.db.query('api::question.question').count({
+			where: {
+				locale: { $eq: locale },
+			},
+		})
+		// Randomize offset
+		const randomOffset = Math.floor(Math.random()*count)
+		// Create custom query
+		let entity = await strapi.db.query('api::question.question').findOne({
+			populate: { 'answers': true },
+			where: {
+				locale: { $eq: locale },
+			},
+			orderBy: 'id',
+			offset: randomOffset,
+			limit: 1,
+		})
+		// Sanitize data
+		const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
+		// Return transformed response
+		return this.transformResponse(sanitizedEntity)
 	}
 }));
