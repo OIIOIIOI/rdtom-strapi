@@ -1,5 +1,6 @@
 'use strict';
 
+const {getService} = require("@strapi/plugin-i18n/server/utils");
 /**
  *  question controller
  */
@@ -28,7 +29,9 @@ module.exports = createCoreController('api::question.question', ({ strapi }) => 
 		return await super.findOne(ctx)
 	},
 	async getRandom(ctx) {
-		const locale = ctx.query.locale || 'en'
+		const { getDefaultLocale } = getService('locales');
+		// Get requested or default locale
+		const locale = ctx.query.locale || await getDefaultLocale()
 		// Get count for locale
 		const count = await strapi.db.query('api::question.question').count({
 			where: {
