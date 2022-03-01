@@ -28,7 +28,7 @@ module.exports = createCoreController('api::question.question', ({ strapi }) => 
 		return await super.findOne(ctx)
 	},
 	async getRandom(ctx) {
-		const locale = ctx.query.locale || 'it'
+		const locale = ctx.query.locale || 'en'
 		// Get count for locale
 		const count = await strapi.db.query('api::question.question').count({
 			where: {
