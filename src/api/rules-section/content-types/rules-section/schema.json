@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rules_sections",
+  "info": {
+    "singularName": "rules-section",
+    "pluralName": "rules-sections",
+    "displayName": "Rules Section",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "parent_section": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::rules-section.rules-section"
+    },
+    "isNumbered": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
+    }
+  }
+}
